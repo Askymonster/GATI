@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # 1. Banco de Dados e Backend
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app # Mantém o banco SQLite salvo na sua máquina
+      - /app/node_modules
+    depends_on:
+      - ia_service
+
+  # 2. Inteligência Artificial
+  ia_service:
+    build: ./iaservice
+    ports:
+      - "5000:5000"
+    volumes:
+      # Compartilha a pasta de imagens do frontend para o Python conseguir ler
+      - ./frontend/public:/frontend/public 
+
+  # 3. Interface Visual
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Ajuda o Vite a atualizar no Windows

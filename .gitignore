@@ -1,0 +1,44 @@
+# Dependências
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build
+dist/
+dist-ssr/
+frontend/dist/
+
+# Variáveis de ambiente
+.env
+.env.local
+frontend/.env
+frontend/.env.local
+backend/.env
+iaservice/.env
+
+# Bancos de dados locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Python (iaservice)
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / SO
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.sw?
+
+# Docker (se gerar algo local)
+*.local
