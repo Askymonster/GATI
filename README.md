@@ -2,4 +2,4 @@ Plataforma de Manutenção Preditiva Ferroviária - Trabalho de Conclusão de Cu
 
 Videopitch: https://www.youtube.com/watch?v=B3pUqZy4cIo
 
-Acesse a documentação completa: [📄 Documentação](gati_documentacao.pdf)
+Acesse a documentação completa: [📄 Documentação](documentacao.pdf)
