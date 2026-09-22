@@ -12,9 +12,11 @@ export default function DashboardManutencao() {
   const [formAtendimento, setFormAtendimento] = useState({ solicitante: '', urgencia: 'Média', tipo_reparo: 'Preventiva', descricao: '' });
   const [solicitando, setSolicitando] = useState(false); // NOVO: Controle do cronômetro
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   // Busca os dados iniciais
   const buscarVagoes = () => {
-    fetch('http://localhost:3001/api/vagoes')
+    fetch(`${API_URL}/api/vagoes`)
       .then(res => res.json())
       .then(data => setVagoes(data))
       .catch(err => console.error("Erro ao buscar vagões:", err));
@@ -47,7 +49,7 @@ export default function DashboardManutencao() {
 
   // Busca detalhes do rolamento clicado
   const handleVerRolamento = (id) => {
-    fetch(`http://localhost:3001/api/rolamentos/${id}`)
+    fetch(`${API_URL}/api/rolamentos/${id}`)
       .then(res => res.json())
       .then(data => setRolamentoSelecionado(data))
       .catch(err => console.error("Erro ao buscar rolamento:", err));
@@ -55,7 +57,7 @@ export default function DashboardManutencao() {
 
   // Busca cálculo de engenharia do rolamento
   const handleBuscarCalculoEngenharia = (id) => {
-    fetch(`http://localhost:3001/api/rolamentos/${id}/calculo-engenharia`)
+    fetch(`${API_URL}/api/rolamentos/${id}/calculo-engenharia`)
       .then(res => res.json())
       .then(data => setCalculoEngenharia(data))
       .catch(err => console.error("Erro ao buscar cálculo:", err));
@@ -65,7 +67,7 @@ export default function DashboardManutencao() {
   const handleAnalisarIA = async (id) => {
     setAnalisando(true);
     try {
-      const res = await fetch(`http://localhost:3001/api/analisar-rolamento/${id}`, { 
+      const res = await fetch(`${API_URL}/api/analisar-rolamento/${id}`, { 
         method: 'POST' 
       });
       const data = await res.json();
@@ -87,7 +89,7 @@ export default function DashboardManutencao() {
     if (!formAtendimento.solicitante.trim()) return;
     setSolicitando(true);
     try {
-      const res = await fetch('http://localhost:3001/api/solicitar-atendimento', {
+      const res = await fetch(`${API_URL}/api/solicitar-atendimento`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

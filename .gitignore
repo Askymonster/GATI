@@ -42,3 +42,5 @@ npm-debug.log*
 
 # Docker (se gerar algo local)
 *.local
+
+*:Zone.Identifier --
